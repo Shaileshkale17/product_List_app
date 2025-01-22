@@ -1,0 +1,84 @@
+
+#### 5. **Create EJS Views**
+
+**views/category/index.ejs**
+```html
+<h1>Categories</h1>
+<a href="/category/add">Add Category</a>
+<ul>
+  <% categories.forEach(category => { %>
+    <li>
+      <%= category.name %> 
+      <a href="/category/edit/<%= category._id %>">Edit</a>
+      <a href="/category/delete/<%= category._id %>">Delete</a>
+    </li>
+  <% }) %>
+</ul>
+```
+
+**views/category/form.ejs**
+```html
+<h1><%= category._id ? 'Edit' : 'Add' %> Category</h1>
+<form action="<%= category._id ? `/category/${category._id}` : '/category' %>" method="POST">
+  <label for="name">Category Name:</label>
+  <input type="text" name="name" id="name" value="<%= category.name || '' %>" required>
+  <button type="submit"><%= category._id ? 'Update' : 'Add' %> Category</button>
+</form>
+```
+
+**views/product/index.ejs**
+```html
+<h1>Products</h1>
+<a href="/product/add">Add Product</a>
+<table>
+  <thead>
+    <tr>
+      <th>Product ID</th>
+      <th>Product Name</th>
+      <th>Category Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(product => { %>
+      <tr>
+        <td><%= product._id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.categoryId.name %></td>
+        <td>
+          <a href="/product/edit/<%= product._id %>">Edit</a>
+          <a href="/product/delete/<%= product._id %>">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<div>
+  <% for (let i = 1; i <= totalPages; i++) { %>
+    <a href="/product?page=<%= i %>"><%= i %></a>
+  <% } %>
+</div>
+```
+
+**views/product/form.ejs**
+```html
+<h1><%= product._id ? 'Edit' : 'Add' %> Product</h1>
+<form action="<%= product._id ? `/product/${product._id}` : '/product' %>" method="POST">
+  <label for="name">Product Name:</label>
+  <input type="text" name="name" id="name" value="<%= product.name || '' %>" required>
+
+  <label for="categoryId">Category:</label>
+  <select name="categoryId" id="categoryId" required>
+    <% categories.forEach(category => { %>
+      <option value="<%= category._id %>" <%= product.categoryId && product.categoryId.toString() === category._id.toString() ? 'selected' : '' %>>
+        <%= category.name %>
+      </option>
+    <% }) %>
+  </select>
+
+  <button type="submit"><%= product._id ? 'Update' : 'Add' %> Product</button>
+</form>
+```
+
+---

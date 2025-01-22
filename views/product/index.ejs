@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index-style.css">
+    <title>Product</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border: 1px solid black;
+    }
+
+    nav ul {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+    }
+
+    nav ul li {
+        list-style: none;
+
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        cursor: pointer;
+        color: black;
+
+    }
+
+    nav ul li a:active {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.728);
+        cursor: pointer;
+    }
+
+    main div {
+        display: flex;
+        flex-direction: column;
+        margin: 0 2rem;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    main .title-dev {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        margin: 1rem 0;
+    }
+
+    main .title-dev button {
+        padding: 0.6rem 1rem;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+
+    }
+
+    main .title-dev button:hover {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+
+    }
+
+    main .page-dev {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+</style>
+
+<body>
+    <nav class="navber">
+        <div>
+            <h1>logo</h1>
+        </div>
+        <ul>
+            <li><a href="/product">Product</a> </li>
+            <li><a href="/category/">Category</a> </li>
+        </ul>
+    </nav>
+    <main>
+        <div>
+            <div class="title-dev">
+                <h1>Products</h1>
+                <a href="/product/add"><button> Add Product</button></a>
+            </div>
+
+            <table>
+                <tr>
+
+                    <th>Product Id</th>
+                    <th>Product Name</th>
+                    <th>Category Name</th>
+                    <th>Category Id</th>
+                    <th>Action</th>
+                </tr>
+
+                <% products.forEach(product=> { %>
+                    <tr>
+
+                        <td>
+                            <%= product?._id %>
+                        </td>
+                        <td>
+                            <%= product?.name %>
+                        </td>
+                        <td>
+                            <%= product?.categoryId && product?.categoryId?.name ? product?.categoryId?.name
+                                : 'Category Deleted' %>
+                        </td>
+                        <td>
+                            <%= product?.categoryId && product?.categoryId?._id ? product?.categoryId._id
+                                : 'Category Deleted' %>
+                        </td>
+                        <td>
+                            <a href="/product/edit/<%= product._id %>">Edit</a>
+                            <a href="/product/delete/<%= product._id %>">Delete</a>
+                        </td>
+                    </tr>
+
+                    <% }) %>
+
+            </table>
+            <div class="page-dev">
+                <p>page:<% for (let i=1; i <=totalPages; i++) { %>
+                        <a href="/product?page=<%= i %>">
+                            <%= i %>
+                        </a>
+                        <% } %>
+                </p>
+
+            </div>
+
+
+
+
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= product?._id ? 'Edit' : 'Add' %> Product
+    </title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border: 1px solid black;
+
+    }
+
+    nav ul {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+
+    }
+
+    nav ul li {
+        list-style: none;
+
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        cursor: pointer;
+        color: black;
+
+    }
+
+    nav ul li a:active {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.728);
+        cursor: pointer;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        /* align-items: center; */
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div input {
+        padding: 0.3rem 0.3rem;
+        width: 15rem;
+    }
+
+    div select {
+        padding: 0.3rem 0.3rem;
+        width: 15rem;
+    }
+
+    button {
+        padding: 0.6rem 1rem;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        margin-top: 0.2rem;
+    }
+
+
+    button:hover {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
+
+    }
+
+    body .title_h1 {
+        margin: 0.5rem 1rem;
+    }
+</style>
+
+<body>
+    <nav class="navber">
+        <div>
+            <h1>logo</h1>
+        </div>
+        <ul>
+            <li><a href="/product">Product</a> </li>
+            <li><a href="/category/">Category</a> </li>
+        </ul>
+    </nav>
+    <h1 class="title_h1">
+        <%= product?._id ? 'Edit' : 'Add' %> Product
+    </h1>
+    <form action="<%= product._id ? `/product/${product._id}` : '/product' %>" method="post">
+        <div>
+            <label for="name">Product Name</label>
+            <input type="text" name="name" id="name" value="<%= product.name || '' %>" required>
+        </div>
+
+        <div>
+            <label for="categoryId">Category</label>
+            <select name="categoryId" id="categoryId" required>
+                <% categories?.forEach(category=> { %>
+                    <option value="<%= category._id %>" <%=product.categoryId &&
+                        product.categoryId.toString()===category._id.toString() ? 'selected' : '' %>>
+                        <%= category?.name %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+
+        <button type="submit">
+            <%= product?._id ? 'Update' : 'Add' %> Product
+        </button>
+    </form>
+</body>
+
+</html>
