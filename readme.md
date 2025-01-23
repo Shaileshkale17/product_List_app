@@ -84,10 +84,10 @@ Ensure you have the following installed on your system:
 
 #### API Endpoints:
 
-- `GET /categories` - Fetch all categories.
-- `POST /categories` - Create a new category.
-- `PUT /categories/:id` - Update a category by ID.
-- `DELETE /categories/:id` - Delete a category by ID.
+- `GET /category` - Fetch all categories.
+- `POST /category` - Create a new category.
+- `PUT /category/:id` - Update a category by ID.
+- `DELETE /category/:id` - Delete a category by ID.
 
 ### Product Master
 
@@ -101,10 +101,10 @@ Ensure you have the following installed on your system:
 
 #### API Endpoints:
 
-- `GET /products` - Fetch paginated products.
-- `POST /products` - Create a new product.
-- `PUT /products/:id` - Update a product by ID.
-- `DELETE /products/:id` - Delete a product by ID.
+- `GET /product` - Fetch paginated products.
+- `POST /product` - Create a new product.
+- `PUT /product/:id` - Update a product by ID.
+- `DELETE /product/:id` - Delete a product by ID.
 
 ---
 
