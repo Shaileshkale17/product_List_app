@@ -31,8 +31,8 @@ Ensure you have the following installed on your system:
 1. Clone the Repository:
 
    ```bash
-   git clone [product_List_app](https://github.com/Shaileshkale17/product_List_app.git)
-   cd <product_List_app>
+   git clone https://github.com/Shaileshkale17/product_List_app.git
+   cd product_List_app
    ```
 
 2. Install Dependencies:
